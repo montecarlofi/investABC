@@ -101,12 +101,11 @@ def geo(r, n):
 # SCRIPT
 N = 480 * 2
 
-A, B, C, space, G = st.columns([2, 2, 2, 1, 7])
-real_estate, space0, stocks, space1, display = st.columns([2, 1, 2, 1, 7])
+A, B, C, G = st.columns([2, 2, 2, 9])
 
 with A:
 	st.write('A')
-	capital_A = st.number_input('Starting capital', min_value=0, value=100, key='capital_A')
+	capital_A = st.number_input('Starting capital', min_value=0, value=1000, key='capital_A')
 	switch = True if capital_A == 0 else False
 	reinvest_A = st.number_input('Reinvest, monthly', value=0., key='reinvest_A', disabled=switch)
 	rate_A = get_r(st.slider('Growth in \\%', min_value=-5, max_value=10, value=4, step=1, key='rate_A', disabled=switch)/100)
@@ -119,7 +118,7 @@ with A:
 
 with B:
 	st.write('B')
-	capital_B = st.number_input('Starting capital', min_value=0, value=100, key='capital_B')
+	capital_B = st.number_input('Starting capital', min_value=0, value=1000, key='capital_B')
 	switch = True if capital_B == 0 else False
 	reinvest_B = st.number_input('Reinvest, monthly', value=0., key='reinvest_B')
 	rate_B = get_r(st.slider('Growth in \\%', min_value=-5, max_value=10, value=4, step=1, key='rate_B', disabled=switch)/100)
@@ -133,7 +132,7 @@ with B:
 
 with C:
 	st.write('C')
-	capital_C = st.number_input('Starting capital', min_value=0, value=100, key='capital_C')
+	capital_C = st.number_input('Starting capital', min_value=0, value=0, key='capital_C')
 	switch = True if capital_C == 0 else False
 	reinvest_C = st.number_input('Reinvest, monthly', value=0., key='reinvest_C', disabled=switch)
 	rate_C = get_r(st.slider('Growth in \\%', min_value=-5, max_value=10, value=4, step=1, key='rate_C', disabled=switch)/100)
@@ -210,10 +209,11 @@ with G:
 #	    'c: Real (+invest) **': capital_I,
 #	})
 #	data.set_index('x', inplace=True)
-	st.subheader("Invest in A, B, or C?")
+	st.subheader("&nbsp; &nbsp; &nbsp; Invest in A, B, or C?")
 	# Display graphs
 	st.altair_chart(c, use_container_width=True) # theme="streamlit" throws error
 
-	st.write('A:', a_end)
-	st.write('B:', b_end)
-	st.write('C:', c_end)
+	space = '&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; '
+	st.write(space, 'A:', a_end)
+	st.write(space, 'B:', b_end)
+	st.write(space, 'C:', c_end)
