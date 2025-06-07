@@ -106,7 +106,7 @@ real_estate, space0, stocks, space1, display = st.columns([2, 1, 2, 1, 7])
 
 with A:
 	st.write('A')
-	capital_A = st.number_input('Starting capital', min_value=0, value=1000, key='capital_A')
+	capital_A = st.number_input('Starting capital', min_value=0, value=100, key='capital_A')
 	switch = True if capital_A == 0 else False
 	reinvest_A = st.number_input('Reinvest, monthly', value=0., key='reinvest_A', disabled=switch)
 	rate_A = get_r(st.slider('Growth in \\%', min_value=-5, max_value=10, value=4, step=1, key='rate_A', disabled=switch)/100)
@@ -119,7 +119,7 @@ with A:
 
 with B:
 	st.write('B')
-	capital_B = st.number_input('Starting capital', min_value=0, value=1000, key='capital_B')
+	capital_B = st.number_input('Starting capital', min_value=0, value=100, key='capital_B')
 	switch = True if capital_B == 0 else False
 	reinvest_B = st.number_input('Reinvest, monthly', value=0., key='reinvest_B')
 	rate_B = get_r(st.slider('Growth in \\%', min_value=-5, max_value=10, value=4, step=1, key='rate_B', disabled=switch)/100)
@@ -133,7 +133,7 @@ with B:
 
 with C:
 	st.write('C')
-	capital_C = st.number_input('Starting capital', min_value=0, value=0, key='capital_C')
+	capital_C = st.number_input('Starting capital', min_value=0, value=100, key='capital_C')
 	switch = True if capital_C == 0 else False
 	reinvest_C = st.number_input('Reinvest, monthly', value=0., key='reinvest_C', disabled=switch)
 	rate_C = get_r(st.slider('Growth in \\%', min_value=-5, max_value=10, value=4, step=1, key='rate_C', disabled=switch)/100)
@@ -183,7 +183,8 @@ with G:
 	table = np.array([CA[:display_N], CB[:display_N], CC[:display_N]])
 	y_max = np.max(table)
 	y_min = np.min(table)
-	a_end, b_end, c_end = int(np.max(table[0,:])) if capital_A != 0 else '', int(np.max(table[1,:])) if capital_B != 0 else '', int(np.max(table[2,:])) if capital_C != 0 else ''
+	#a_end, b_end, c_end = int(np.max(table[0,:])) if capital_A != 0 else '', int(np.max(table[1,:])) if capital_B != 0 else '', int(np.max(table[2,:])) if capital_C != 0 else ''
+	a_end, b_end, c_end = int(table[0,-1]) if capital_A != 0 else '', int(table[1,-1]) if capital_B != 0 else '', int(table[2,-1]) if capital_C != 0 else ''
 
 	if capital_A == 0:
 		CA = [None for i in range(N)]
